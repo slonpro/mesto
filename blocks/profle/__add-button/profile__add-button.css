@@ -6,3 +6,9 @@
   color: white;
   font-size: 40px;
 }
+
+.profile__add-button:hover {
+  opacity: 0.6;
+  transition: 0.3s;
+  cursor: pointer;
+ }

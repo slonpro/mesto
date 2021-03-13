@@ -1,0 +1,9 @@
+.popup__button-close {
+  position: absolute;
+  right: -60px;
+  font-size: 92px;
+  top: -80px;
+  color: white;
+  transform: rotate(45deg);
+  cursor: pointer;
+}

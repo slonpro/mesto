@@ -1,0 +1,8 @@
+.popup__description {
+  min-height: 27px;
+  border: none;
+  width: 100%;
+  font-size: 14px;
+line-height: 17px;
+color: black;
+}

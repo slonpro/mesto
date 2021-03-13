@@ -4,3 +4,9 @@
   border: solid 1px white;
   background-color: black;
  }
+
+ .profile__edit-button:hover {
+  opacity: 0.6;
+  transition: 0.3s;
+  cursor: pointer;
+ }
