@@ -6,18 +6,17 @@
   padding: 0;
   background: url(../../../img/edit_button.svg) no-repeat;
   background-position: center;
- }
+}
 
- .profile__edit-button:hover {
+.profile__edit-button:hover {
   opacity: 0.6;
   transition: 0.3s;
   cursor: pointer;
- }
+}
 
- @media screen and (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .profile__edit-button {
     height: 18px;
     width: 18px;
-
-    }
   }
+}
