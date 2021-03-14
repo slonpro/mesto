@@ -11,5 +11,4 @@
 
 * [Ссылка на git pages](https://slonpro.github.io/mesto/index.html)
 
-**Картинки**
 
