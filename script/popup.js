@@ -1,7 +1,7 @@
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 let popupCloseButton = document.querySelector('.popup__button-close');
-/* let popupWindow = document.querySelector('.popup__window'); */
+let popupWindow = document.querySelector('.popup__window');
 
 //Получаем переменный текстовых полей
 let profileName = document.querySelector('.profile__name');
@@ -17,7 +17,7 @@ let formElement = document.querySelector('.popup__form')
 //Открываем диалоговое окно и записываем в него значения
 function popupOpened() {
   popup.classList.add('popup_opened');
-  popupName.value = profileName.textContent;
+  popupdsName.value = profileName.textContent;
   popupDescription.value = profileDescription.textContent;
 };
 
@@ -47,12 +47,12 @@ function formSubmitHandler(evt) {
 formElement.addEventListener('submit', formSubmitHandler); 
 
 //Что бы форма не закрывалась кликая по контенту
-/* popupWindow.addEventListener('click', function (event) {
+popupWindow.addEventListener('click', function (event) {
   event.stopImmediatePropagation();
-}); */
+});
 
 editButton.addEventListener('click', popupOpened);
 
 //Отслеживание клика по оверлею и кнопке
-/* popup.addEventListener('click', closePopup); */
+popup.addEventListener('click', closePopup);
 popupCloseButton.addEventListener('click', closePopup);

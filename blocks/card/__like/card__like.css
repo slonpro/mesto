@@ -5,6 +5,7 @@
   border: none;
   width: 22px;
   height: 19px;
+  outline: none;
 }
 
 .card__like:hover {
@@ -12,3 +13,4 @@
   transition: 0.3s;
   cursor: pointer;
 }
+
