@@ -8,8 +8,11 @@ let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
 
 //Получаем перменные текстовых полей в диалоговом окне
-let popupName = document.querySelector('.popup__input_name');
-let popupDescription = document.querySelector('.popup__input_description');
+let popupName = document.querySelector('#name');
+let popupDescription = document.querySelector('#description');
+
+// Находим форму в DOM
+let formElement = document.querySelector('.popup__form')
 
 //Открываем диалоговое окно и записываем в него значения
 function popupOpened() {
@@ -23,8 +26,7 @@ function closePopup() {
   popup.classList.remove('popup_opened');
 };
 
-// Находим форму в DOM
-let formElement = document.querySelector('.popup__form')
+
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
