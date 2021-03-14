@@ -4,6 +4,8 @@
   border: solid 1px white;
   background-color: black;
   padding: 0;
+  background: url(../../../img/edit_button.svg) no-repeat;
+  background-position: center;
  }
 
  .profile__edit-button:hover {

@@ -1,6 +1,7 @@
 .card {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
   gap: 20px 17px;
   margin: 0 200px 66px;
 }

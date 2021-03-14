@@ -5,6 +5,8 @@
   background-color: black;
   color: white;
   font-size: 40px;
+  background: url(../../../img/add_button.svg) no-repeat;
+  background-position: center;
 }
 
 .profile__add-button:hover {

@@ -3,16 +3,19 @@
   line-height: 22px;
   font-weight: 400;
   margin: 16px 0 0 0;
-  text-overflow: clip;
+  text-overflow: ellipsis;
+  max-width: ограничение ширины;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 300px;
 }
-
 
 @media screen and (max-width: 767px) {
   .profile__description {
-      font-size: 14px;
-line-height: 17px;
-text-align: center;
-width: 320px;
-margin: 14px 0 0 0;
-    }
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    width: 320px;
+    margin: 14px 0 0 0;
   }
+}
