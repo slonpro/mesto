@@ -1,4 +1,4 @@
-let likes = document.querySelectorAll('.card__like')
+/* let likes = document.querySelectorAll('.card__like')
 
 //Закрашиваем сердечко на черное и если черное обратно
 for (let i = 0; i < likes.length; i++) {
@@ -9,3 +9,4 @@ for (let i = 0; i < likes.length; i++) {
 }
 
 
+ */

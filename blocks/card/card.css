@@ -14,10 +14,10 @@
 
 @media screen and (max-width: 1023px) {
   .card {
-    margin: 0 50px 66px;
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media screen and (max-width: 767px) {
   .card {
     margin: 0 19px 48px;

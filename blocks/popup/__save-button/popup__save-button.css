@@ -7,7 +7,7 @@
   background-color: black;
   color: white;
   border: none;
-  margin-top: 18px;
+  margin: 18px 0 37px 0;
 }
 
 .popup__save-button:hover {
@@ -21,7 +21,7 @@
     width: 238px;
     height: 46px;
     font-weight: normal;
-font-size: 14px;
-line-height: 17px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
