@@ -7,3 +7,11 @@
   transform: rotate(45deg);
   cursor: pointer;
 }
+
+@media screen and (max-width: 550px) {
+  .popup__button-close {
+    right: -10px;
+    font-size: 62px;
+    top: -75px;
+  }
+}

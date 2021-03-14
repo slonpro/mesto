@@ -15,3 +15,13 @@
   transition: .3s;
   cursor: pointer;
 }
+
+@media screen and (max-width: 470px) {
+  .popup__save-button {
+    width: 238px;
+    height: 46px;
+    font-weight: normal;
+font-size: 14px;
+line-height: 17px;
+  }
+}
