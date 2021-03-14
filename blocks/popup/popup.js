@@ -1,65 +1,64 @@
-//Реализация откртия и закрытия всплывающего окна + Получение данных
 let editButton = document.querySelector('.profile__edit-button');
-let popupOpen = document.querySelector('.popup');
+let popup = document.querySelector('.popup');
 let popupCloseButton = document.querySelector('.popup__button-close');
 let popupWindow = document.querySelector('.popup__window');
+
 //Получаем переменный текстовых полей
 let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
+
 //Получаем перменные текстовых полей в диалоговом окне
 let popupName = document.querySelector('.popup__name');
 let popupDescription = document.querySelector('.popup__description');
-//Открываем диалоговое окно и записываем в него значения
 
+//Открываем диалоговое окно и записываем в него значения
 function popupOpened() {
   popupOpenedBlock(profileName.textContent, profileDescription.textContent);
 }
 
-
 function popupOpenedBlock(name, description) {
-  popupOpen.classList.add('popup_opened');
+  popup.classList.add('popup_opened');
   popupName.setAttribute('value', name);
   popupDescription.setAttribute('value', description);
 };
 
+//Функция закрытия popup
 function popupClose() {
-  popupOpen.classList.remove('popup_opened');
+  popup.classList.remove('popup_opened');
 };
 
 
+editButton.addEventListener('click', popupOpened);
 
-editButton.addEventListener('click', popupOpened); 
 
-popupWindow.addEventListener('click', function(event) {
+//Что бы форма не закрывалась кликая по контенту
+popupWindow.addEventListener('click', function (event) {
   event.stopImmediatePropagation();
 });
 
-popupOpen.addEventListener('click', popupClose);
+
+//Отслеживание клика по оверлею и кнопке
+popup.addEventListener('click', popupClose);
 popupCloseButton.addEventListener('click', popupClose);
 
-// --------------------------------------------------------
 
+// Находим форму в DOM
+let formElement = document.querySelector('.popup__form')
 
-/* // Находим форму в DOM
-let formElement = // Воспользуйтесь методом querySelector()
-// Находим поля формы в DOM
-let nameInput = // Воспользуйтесь инструментом .querySelector()
-let jobInput = // Воспользуйтесь инструментом .querySelector()
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                                // Так мы можем определить свою логику отправки.
-                                                // О том, как это делать, расскажем позже.
+function formSubmitHandler(evt) {
+  evt.preventDefault();
 
-    // Получите значение полей jobInput и nameInput из свойства value
-
-    // Выберите элементы, куда должны быть вставлены значения полей
-
-    // Вставьте новые значения с помощью textContent
+  // Эта строчка отменяет стандартную отправку формы.
+  // Так мы можем определить свою логику отправки.
+  // О том, как это делать, расскажем позже.
+  profileName.textContent = popupName.value
+  profileDescription.textContent = popupDescription.value;
+  popupClose()
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);  */
+formElement.addEventListener('submit', formSubmitHandler); 
