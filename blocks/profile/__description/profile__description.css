@@ -14,7 +14,7 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    width: 320px;
+    max-width: 282px;
     margin: 14px 0 0 0;
   }
 }

@@ -46,8 +46,8 @@ function formSubmitHandler(evt) {
 
 formElement.addEventListener('submit', formSubmitHandler); 
 
-/* //Что бы форма не закрывалась кликая по контенту
-popupWindow.addEventListener('click', function (event) {
+//Что бы форма не закрывалась кликая по контенту
+/* popupWindow.addEventListener('click', function (event) {
   event.stopImmediatePropagation();
 }); */
 
