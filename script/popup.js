@@ -7,12 +7,16 @@ let popupWindow = document.querySelector('.popup__window');
 let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
 
+
+
 //Получаем перменные текстовых полей в диалоговом окне
 let popupName = document.querySelector('#name');
 let popupDescription = document.querySelector('#description');
 
 // Находим форму в DOM
 let formElement = document.querySelector('.popup__form')
+
+
 
 //Открываем диалоговое окно и записываем в него значения
 function popupOpened() {
@@ -44,7 +48,7 @@ function formSubmitHandler(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 
-formElement.addEventListener('submit', formSubmitHandler); 
+formElement.addEventListener('submit', formSubmitHandler);
 
 //Что бы форма не закрывалась кликая по контенту
 popupWindow.addEventListener('click', function (event) {

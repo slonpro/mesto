@@ -19,7 +19,8 @@
         <img src="./img/avatar.png" alt="Фото профиля" class="profile__avatar">
         <div class="profile__profile-info">
           <div class="profile__name-block">
-            <h1 class="profile__name">Жак-Ив Кусто</h1><button aria-label="Редактировать" type="button" class="profile__edit-button"></button>
+            <h1 class="profile__name">Жак-Ив Кусто</h1><button aria-label="Редактировать" type="button"
+              class="profile__edit-button"></button>
           </div>
           <p class="profile__description">Исследователь океана</p>
         </div>
@@ -27,48 +28,6 @@
         <button type="button" class="profile__add-button"></button>
       </section>
       <section class="card">
-        <article class="card__item">
-          <img src="./img/card1.jpg" alt="Фото парижа" class="card__img">
-          <div class="card__signature-block">
-            <h3 class="card__title">Париж</h3>
-            <button type="button" class="card__like"></button>
-          </div>
-        </article>
-        <article class="card__item">
-          <img src="./img/card2.jpg" alt="Фото Нью-Йорка" class="card__img">
-          <div class="card__signature-block">
-            <h3 class="card__title">New York</h3>
-            <button type="button" class="card__like"></button>
-          </div>
-        </article>
-        <article class="card__item">
-          <img src="./img/card3.jpg" alt="Фото Москвы" class="card__img">
-          <div class="card__signature-block">
-            <h3 class="card__title">Москва</h3>
-            <button type="button" class="card__like"></button>
-          </div>
-        </article>
-        <article class="card__item">
-          <img src="./img/card4.jpg" alt="Фото Мадрида" class="card__img">
-          <div class="card__signature-block">
-            <h3 class="card__title">Испания - Мадрид</h3>
-            <button type="button" class="card__like"></button>
-          </div>
-        </article>
-        <article class="card__item">
-          <img src="./img/card5.jpg" alt="Фотом Колизея в Риме" class="card__img">
-          <div class="card__signature-block">
-            <h3 class="card__title">Рим</h3>
-            <button type="button" class="card__like"></button>
-          </div>
-        </article>
-        <article class="card__item">
-          <img src="./img/card6.jpg" alt="Фотом пирамид в каире" class="card__img">
-          <div class="card__signature-block">
-            <h3 class="card__title">Каир</h3>
-            <button type="button" class="card__like"></button>
-          </div>
-        </article>
       </section>
     </main>
     <footer class="footer">
@@ -80,14 +39,50 @@
       <button type="button" class="popup__button-close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="popup_form" action="#" class="popup__form">
-        <input type="text" name="name" id="name" class="popup__input">
-        <input type="text" name="description" id="description" class="popup__input">
+        <input type="text" name="name" id="name" class="popup__input" placeholder=" ">
+        <input type="text" name="description" id="description" class="popup__input" placeholder=" ">
         <input type="submit" class="popup__save-button" value="Сохранить">
       </form>
     </div>
   </div>
+
+  <div class="popup popup_card">
+    <div class="popup__window popup__window_card">
+      <button type="button" class="popup__button-close popup__button-close_card"></button>
+      <h2 class="popup__title popup__title_card">Новое место</h2>
+      <form name="popup_card" action="#" class="popup__form popup__form_card">
+        <input type="text" name="title" id="title" class="popup__input popup__input_card" placeholder="Название">
+        <input type="text" name="src" id="src" class="popup__input popup__input_card" placeholder="Ссылка на картинку">
+        <input type="submit" class="popup__save-button popup__save-button_card" value="Создать">
+      </form>
+    </div>
+  </div>
+
+
+  <div class="popup popup_img">
+    <div class="popup__window-img">
+    <img class="popup__img"></img>
+    <button type="button" class="popup__button-close popup__button-close_img"></button>
+      
+      <figcaption class="popup__figcaption"></figcaption>
+    </div>
+  </div>
+
+  <template id="card_template">
+    <article class="card__item">
+      <div class="card__block-img">
+        <img src="" alt="" class="card__img">
+        <button class="card__delete"></button>
+      </div>
+      <div class="card__signature-block">
+        <h3 class="card__title"></h3>
+        <button type="button" class="card__like"></button>
+      </div>
+    </article>
+  </template>
+  <script src="./script/cards.js"></script>
   <script src="./script/popup.js"></script>
-  <script src="./script/like.js"></script>
+
 </body>
 
 </html>
