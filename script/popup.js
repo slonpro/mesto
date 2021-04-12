@@ -21,6 +21,7 @@ let formElement = document.querySelector('.popup__form')
 //Открываем диалоговое окно и записываем в него значения
 function popupOpened() {
   popup.classList.add('popup_opened');
+
   popupName.value = profileName.textContent;
   popupDescription.value = profileDescription.textContent;
 };
