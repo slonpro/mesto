@@ -45,6 +45,7 @@ initialCards.forEach(function (item) {
   const cardElement = cardTemplate.querySelector('.card__item').cloneNode(true);
   cardElement.querySelector('.card__img').src = item.link;
   cardElement.querySelector('.card__title').textContent = item.name;
+  cardElement.querySelector('.card__img').alt = item.name;
 
   const buttonLike = cardElement.querySelector('.card__like')
   buttonLike.addEventListener('click', function () {
@@ -110,6 +111,7 @@ function createCard(cardData) {
   const cardElement = cardTemplate.querySelector('.card__item').cloneNode(true);
   cardElement.querySelector('.card__img').src = cardData.link;
   cardElement.querySelector('.card__title').textContent = cardData.name;
+  cardElement.querySelector('.card__img').alt = cardData.name;
   const button = cardElement.querySelector('.card__like')
   button.addEventListener('click', function likeget() {
     button.classList.toggle('card__like_active');
