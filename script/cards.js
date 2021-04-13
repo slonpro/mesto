@@ -123,7 +123,7 @@ function popupOpenedImg(event) {
 };
 
 //Что бы форма не закрывалась кликая по контенту
-popupWindowImg.addEventListener('click', (event) => event.stopImmediatePropagation())g
+popupWindowImg.addEventListener('click', (event) => event.stopImmediatePropagation())
 
 //Отслеживание клика по оверлею и кнопке
 popupImg.addEventListener('click', () => closePopup(popupImg));
