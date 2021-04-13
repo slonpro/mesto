@@ -69,11 +69,7 @@ function formSubmitHandler(evt) {
 formCardElement.addEventListener('submit', formSubmitHandler);
 
 //Что бы форма не закрывалась кликая по контенту
-popupCard.addEventListener('click', function (evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(popupCard)
-  } 
-});
+popupCloseOverlay(popupCard)
 
 addButton.addEventListener('click', () => popupOpened(popupCard));
 
@@ -123,11 +119,7 @@ function popupOpenedImg(event) {
 
 
 //Отслеживание клика по оверлею и кнопке
-popupImg.addEventListener('click', function (evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(popupImg)
-  } 
-});
+popupCloseOverlay(popupImg)
 popupCloseButtonImg.addEventListener('click', () => closePopup(popupImg));
 
 

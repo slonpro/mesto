@@ -19,6 +19,12 @@ const popupOpened = (modelWindow) =>  modelWindow.classList.add('popup_opened')
 //Функция закрытия popup
 const closePopup = (modelWindow) =>  modelWindow.classList.remove('popup_opened')
 
+const popupCloseOverlay = (modelWindow) =>   modelWindow.addEventListener('click', function (evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(modelWindow)
+  } 
+});
+
 //Открываем диалоговое окно и записываем в него значения
 function popupOpenedProfile() {
   popupOpened(popupProfile)
@@ -50,9 +56,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 editButton.addEventListener('click', popupOpenedProfile);
 
 //Отслеживание клика по оверлею и кнопке
-popupProfile.addEventListener('click', function (evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(popupProfile)
-  } 
-});
+popupCloseOverlay(popupProfile)
 popupCloseButton.addEventListener('click', () => closePopup(popupProfile));
+
+
