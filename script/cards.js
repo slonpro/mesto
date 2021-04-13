@@ -70,12 +70,14 @@ function formSubmitHandler(evt) {
 formCardElement.addEventListener('submit', formSubmitHandler);
 
 //Что бы форма не закрывалась кликая по контенту
-popupCardWindow.addEventListener('click', (event) => event.stopImmediatePropagation());
+popupCard.addEventListener('click', function (evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupCard)
+  } 
+});
 
 addButton.addEventListener('click', () => popupOpened(popupCard));
 
-//Отслеживание клика по оверлею и кнопке
-popupCard.addEventListener('click', () => closePopup(popupCard));
 popupCardCloseButton.addEventListener('click', () => closePopup(popupCard));
 
 //Добавление карточки
@@ -122,11 +124,14 @@ function popupOpenedImg(event) {
   popupFigcaption.textContent = cardFigcaption.textContent
 };
 
-//Что бы форма не закрывалась кликая по контенту
-popupWindowImg.addEventListener('click', (event) => event.stopImmediatePropagation())
+
 
 //Отслеживание клика по оверлею и кнопке
-popupImg.addEventListener('click', () => closePopup(popupImg));
+popupImg.addEventListener('click', function (evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupImg)
+  } 
+});
 popupCloseButtonImg.addEventListener('click', () => closePopup(popupImg));
 
 

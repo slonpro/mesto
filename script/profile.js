@@ -45,11 +45,15 @@ function formSubmitHandler(evt) {
 
 formElement.addEventListener('submit', formSubmitHandler);
 
-//Что бы форма не закрывалась кликая по контенту
-popupWindow.addEventListener('click', (event) => event.stopImmediatePropagation())
+
+
 
 editButton.addEventListener('click', popupOpenedProfile);
 
 //Отслеживание клика по оверлею и кнопке
-popupProfile.addEventListener('click', () => closePopup(popupProfile));
+popupProfile.addEventListener('click', function (evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupProfile)
+  } 
+});
 popupCloseButton.addEventListener('click', () => closePopup(popupProfile));
