@@ -1,37 +1,31 @@
-let editButton = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
-let popupCloseButton = document.querySelector('.popup__button-close');
-let popupWindow = document.querySelector('.popup__window');
+const editButton = document.querySelector('.profile__edit-button');
+const popupProfile = document.querySelector('.popup_profile');
+const popupCloseButton = document.querySelector('.popup__button-close');
+const popupWindow = document.querySelector('.popup__window');
 
 //Получаем переменный текстовых полей
-let profileName = document.querySelector('.profile__name');
-let profileDescription = document.querySelector('.profile__description');
-
-
+const profileName = document.querySelector('.profile__name');
+const profileDescription = document.querySelector('.profile__description');
 
 //Получаем перменные текстовых полей в диалоговом окне
-let popupName = document.querySelector('#name');
-let popupDescription = document.querySelector('#description');
+const popupName = document.querySelector('#name');
+const popupDescription = document.querySelector('#description');
 
 // Находим форму в DOM
-let formElement = document.querySelector('.popup__form')
+const formElement = document.querySelector('.popup__form')
 
-
-
-//Открываем диалоговое окно и записываем в него значения
-function popupOpened() {
-  popup.classList.add('popup_opened');
-
-  popupName.value = profileName.textContent;
-  popupDescription.value = profileDescription.textContent;
-};
+//Открываем диалоговое окно 
+const popupOpened = (modelWindow) =>  modelWindow.classList.add('popup_opened')
 
 //Функция закрытия popup
-function closePopup() {
-  popup.classList.remove('popup_opened');
-};
+const closePopup = (modelWindow) =>  modelWindow.classList.remove('popup_opened')
 
-
+//Открываем диалоговое окно и записываем в него значения
+function popupOpenedProfile() {
+  popupOpened(popupProfile)
+  popupName.value = profileName.textContent;
+  popupDescription.value = profileDescription.textContent;
+}
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -43,7 +37,7 @@ function formSubmitHandler(evt) {
   // О том, как это делать, расскажем позже.
   profileName.textContent = popupName.value
   profileDescription.textContent = popupDescription.value;
-  closePopup()
+  closePopup(popupProfile)
 }
 
 // Прикрепляем обработчик к форме:
@@ -52,12 +46,10 @@ function formSubmitHandler(evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 
 //Что бы форма не закрывалась кликая по контенту
-popupWindow.addEventListener('click', function (event) {
-  event.stopImmediatePropagation();
-});
+popupWindow.addEventListener('click', (event) => event.stopImmediatePropagation())
 
-editButton.addEventListener('click', popupOpened);
+editButton.addEventListener('click', popupOpenedProfile);
 
 //Отслеживание клика по оверлею и кнопке
-popup.addEventListener('click', closePopup);
-popupCloseButton.addEventListener('click', closePopup);
+popupProfile.addEventListener('click', () => closePopup(popupProfile));
+popupCloseButton.addEventListener('click', () => closePopup(popupProfile));
