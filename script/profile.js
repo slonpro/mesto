@@ -1,7 +1,6 @@
 const editButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_profile');
 const popupCloseButton = document.querySelector('.popup__button-close');
-const popupWindow = document.querySelector('.popup__window');
 
 //Получаем переменный текстовых полей
 const profileName = document.querySelector('.profile__name');

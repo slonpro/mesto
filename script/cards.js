@@ -31,7 +31,6 @@ const sectionCard = document.querySelector('.card')
 const addButton = document.querySelector('.profile__add-button');
 const popupCard = document.querySelector('.popup_card');
 const popupCardCloseButton = document.querySelector('.popup__button-close_card');
-const popupCardWindow = document.querySelector('.popup__window_card');
 const formCardElement = document.querySelector('.popup__form_card')
 
 const popupCardTitle = document.querySelector('#title');
@@ -106,11 +105,8 @@ function clearPopup() {
   popupCardSrc.value = ''
 }
 
-const imgButton = document.querySelectorAll('.card__img');
 const popupImg = document.querySelector('.popup_img');
 const popupCloseButtonImg = document.querySelector('.popup__button-close_img');
-const popupWindowImg = document.querySelector('.popup__window-img');
-const cardImg = document.querySelectorAll('.card__img')
 const popupImgItem = popupImg.querySelector('.popup__img')
 const popupFigcaption = popupImg.querySelector('.popup__figcaption')
 
