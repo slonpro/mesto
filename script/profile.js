@@ -17,7 +17,10 @@ const formElement = document.querySelector('.popup__form')
 const popupOpened = (modelWindow) =>  modelWindow.classList.add('popup_opened')
 
 //Функция закрытия popup
-const closePopup = (modelWindow) =>  modelWindow.classList.remove('popup_opened')
+function closePopup(modelWindow) {
+  modelWindow.classList.remove('popup_opened')
+  
+}
 
 const popupCloseOverlay = (modelWindow) =>   modelWindow.addEventListener('click', function (evt) {
   if (evt.target === evt.currentTarget) {
@@ -30,6 +33,7 @@ function popupOpenedProfile() {
   popupOpened(popupProfile)
   popupName.value = profileName.textContent;
   popupDescription.value = profileDescription.textContent;
+  closePopupEsc(popupProfile)
 }
 
 // Обработчик «отправки» формы, хотя пока
@@ -50,13 +54,29 @@ function formSubmitHandler(evt) {
 
 formElement.addEventListener('submit', formSubmitHandler);
 
-
-
-
 editButton.addEventListener('click', popupOpenedProfile);
 
 //Отслеживание клика по оверлею и кнопке
 popupCloseOverlay(popupProfile)
 popupCloseButton.addEventListener('click', () => closePopup(popupProfile));
+
+
+function closePopupEsc(modelWindow) {
+document.addEventListener('keydown', closeEsc);
+function closeEsc(evt) {
+  if(evt.keyCode === 27) {
+    console.log('Закрылся')
+    closePopup(modelWindow)
+    document.removeEventListener('keydown', closeEsc);
+  }
+}
+}
+
+
+
+
+
+
+
 
 

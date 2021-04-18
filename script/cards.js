@@ -42,7 +42,6 @@ initialCards.forEach(function (item) {
     name: item.name,
     link: item.link
   }
-  createCard(cardData)
   prependCard(cardData)
 })
 
@@ -71,7 +70,12 @@ formCardElement.addEventListener('submit', formSubmitHandler);
 //Что бы форма не закрывалась кликая по контенту
 popupCloseOverlay(popupCard)
 
-addButton.addEventListener('click', () => popupOpened(popupCard));
+function popupOpenedCard() {
+  popupOpened(popupCard)
+  closePopupEsc(popupCard)
+}
+
+addButton.addEventListener('click', popupOpenedCard);
 
 popupCardCloseButton.addEventListener('click', () => closePopup(popupCard));
 
@@ -114,6 +118,7 @@ function popupOpenedImg(event) {
   const cardFigcaption = blockCard.querySelector('.card__title')
   popupImgItem.setAttribute('src', cardImg)
   popupFigcaption.textContent = cardFigcaption.textContent
+  closePopupEsc(popupImg)
 };
 
 
