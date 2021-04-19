@@ -67,24 +67,23 @@ function formSubmitHandler(evt) {
 // он будет следить за событием “submit” - «отправка»
 formCardElement.addEventListener('submit', formSubmitHandler);
 
-//Что бы форма не закрывалась кликая по контенту
-popupCloseOverlay(popupCard)
 
-function popupOpenedCard() {
-  popupOpened(popupCard)
-  closePopupEsc(popupCard)
+
+function openPopupCard() {
+  openPopup(popupCard)
 }
 
-addButton.addEventListener('click', popupOpenedCard);
+addButton.addEventListener('click', openPopupCard);
 
 popupCardCloseButton.addEventListener('click', () => closePopup(popupCard));
 
 //Добавление карточки
 function createCard(cardData) {
   const cardElement = cardTemplate.querySelector('.card__item').cloneNode(true);
-  cardElement.querySelector('.card__img').src = cardData.link;
+  const buttonImg = cardElement.querySelector('.card__img')
+  buttonImg.src = cardData.link;
   cardElement.querySelector('.card__title').textContent = cardData.name;
-  cardElement.querySelector('.card__img').alt = cardData.name;
+  buttonImg.alt = cardData.name;
   const button = cardElement.querySelector('.card__like')
   button.addEventListener('click', function () {
     button.classList.toggle('card__like_active');
@@ -94,8 +93,10 @@ function createCard(cardData) {
     const listItem = buttonDelete.closest('.card__item');
     listItem.remove();
   })
-  const buttonImg = cardElement.querySelector('.card__img')
-  buttonImg.addEventListener('click', popupOpenedImg)
+  
+  buttonImg.addEventListener('click', openPopupImg)
+  
+  /* buttonElement.classList.add('popup__save-button_inactive'); */
   return cardElement;
 }
 
@@ -103,28 +104,27 @@ function createCard(cardData) {
 function clearPopup() {
   popupCardTitle.value = ''
   popupCardSrc.value = ''
+  document.querySelector('#submit').classList.add(settings.inactiveButtonClass)
 }
-
+console.log()
 const popupImg = document.querySelector('.popup_img');
 const popupCloseButtonImg = document.querySelector('.popup__button-close_img');
 const popupImgItem = popupImg.querySelector('.popup__img')
 const popupFigcaption = popupImg.querySelector('.popup__figcaption')
 
 //Открываем диалоговое окно и записываем в него значения
-function popupOpenedImg(event) {
-  popupOpened(popupImg)
+function openPopupImg(event) {
+  openPopup(popupImg)
   const blockCard = event.target.closest('.card__item')
   const cardImg = blockCard.querySelector('.card__img').src
   const cardFigcaption = blockCard.querySelector('.card__title')
   popupImgItem.setAttribute('src', cardImg)
   popupFigcaption.textContent = cardFigcaption.textContent
-  closePopupEsc(popupImg)
+  
 };
 
 
 
-//Отслеживание клика по оверлею и кнопке
-popupCloseOverlay(popupImg)
 popupCloseButtonImg.addEventListener('click', () => closePopup(popupImg));
 
 

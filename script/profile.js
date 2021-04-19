@@ -14,26 +14,37 @@ const popupDescription = document.querySelector('#description');
 const formElement = document.querySelector('.popup__form')
 
 //Открываем диалоговое окно 
-const popupOpened = (modelWindow) =>  modelWindow.classList.add('popup_opened')
+function openPopup(modelWindow) { 
+  modelWindow.classList.add('popup_opened') 
+  document.addEventListener('keydown', closeByEscape);
+}
 
 //Функция закрытия popup
 function closePopup(modelWindow) {
   modelWindow.classList.remove('popup_opened')
+  document.removeEventListener('keydown', closeByEscape);
   
 }
 
-const popupCloseOverlay = (modelWindow) =>   modelWindow.addEventListener('click', function (evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(modelWindow)
-  } 
-});
+const popups = document.querySelectorAll('.popup')
+
+popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+          closePopup(popup)
+        }
+    })
+})
+
 
 //Открываем диалоговое окно и записываем в него значения
 function popupOpenedProfile() {
-  popupOpened(popupProfile)
+  openPopup(popupProfile)
   popupName.value = profileName.textContent;
   popupDescription.value = profileDescription.textContent;
-  closePopupEsc(popupProfile)
 }
 
 // Обработчик «отправки» формы, хотя пока
@@ -57,20 +68,20 @@ formElement.addEventListener('submit', formSubmitHandler);
 editButton.addEventListener('click', popupOpenedProfile);
 
 //Отслеживание клика по оверлею и кнопке
-popupCloseOverlay(popupProfile)
+
 popupCloseButton.addEventListener('click', () => closePopup(popupProfile));
 
 
-function closePopupEsc(modelWindow) {
-document.addEventListener('keydown', closeEsc);
-function closeEsc(evt) {
-  if(evt.keyCode === 27) {
-    console.log('Закрылся')
-    closePopup(modelWindow)
-    document.removeEventListener('keydown', closeEsc);
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup); 
+    console.log('Я еще')
   }
 }
-}
+
+
+
 
 
 
