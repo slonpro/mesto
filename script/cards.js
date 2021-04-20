@@ -30,7 +30,6 @@ const sectionCard = document.querySelector('.card')
 
 const addButton = document.querySelector('.profile__add-button');
 const popupCard = document.querySelector('.popup_card');
-const popupCardCloseButton = document.querySelector('.popup__button-close_card');
 const formCardElement = document.querySelector('.popup__form_card')
 
 const popupCardTitle = document.querySelector('#title');
@@ -75,7 +74,7 @@ function openPopupCard() {
 
 addButton.addEventListener('click', openPopupCard);
 
-popupCardCloseButton.addEventListener('click', () => closePopup(popupCard));
+
 
 //Добавление карточки
 function createCard(cardData) {
@@ -108,7 +107,6 @@ function clearPopup() {
 }
 console.log()
 const popupImg = document.querySelector('.popup_img');
-const popupCloseButtonImg = document.querySelector('.popup__button-close_img');
 const popupImgItem = popupImg.querySelector('.popup__img')
 const popupFigcaption = popupImg.querySelector('.popup__figcaption')
 
@@ -122,10 +120,6 @@ function openPopupImg(event) {
   popupFigcaption.textContent = cardFigcaption.textContent
   
 };
-
-
-
-popupCloseButtonImg.addEventListener('click', () => closePopup(popupImg));
 
 
 

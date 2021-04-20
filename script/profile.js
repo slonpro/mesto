@@ -33,7 +33,7 @@ popups.forEach((popup) => {
         if (evt.target.classList.contains('popup_opened')) {
             closePopup(popup)
         }
-        if (evt.target.classList.contains('popup__close')) {
+        if (evt.target.classList.contains('popup__button-close')) {
           closePopup(popup)
         }
     })
@@ -66,11 +66,6 @@ function formSubmitHandler(evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 
 editButton.addEventListener('click', popupOpenedProfile);
-
-//Отслеживание клика по оверлею и кнопке
-
-popupCloseButton.addEventListener('click', () => closePopup(popupProfile));
-
 
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
