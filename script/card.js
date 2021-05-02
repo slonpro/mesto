@@ -26,6 +26,14 @@ const initialCards = [
 ];
 
 const popupImg = document.querySelector('.popup_img')
+const formCardElement = document.querySelector('.popup__form_card')
+const addCardButton = document.querySelector('.profile__add-button');
+const popupCard = document.querySelector('.popup_card');
+const popupElementImg = document.querySelector('.popup__img')
+const popupElementFigcaption = document.querySelector('.popup__figcaption')
+const popupCardTitle = document.querySelector('#title');
+const popupCardSrc = document.querySelector('#src');
+
 
 class Card {
   constructor(data, cardSelector) {
@@ -58,11 +66,13 @@ class Card {
 
 
   _openPopupImg() {
-
+    popupElementImg.src = this._link
+    popupElementFigcaption.textContent = this._name
     popupImg.classList.add('popup_opened')
   }
 
   _setEventListener() {
+
     const buttonImg = this._element.querySelector('.card__img')
 
     buttonImg.addEventListener('click', () => {
@@ -92,3 +102,35 @@ initialCards.forEach((item) => {
   // Добавляем в DOM
   document.querySelector('.card').prepend(cardElement);
 });
+
+//Очистка формы
+function clearPopupCard() {
+  popupCardTitle.value = ''
+  popupCardSrc.value = ''
+  document.querySelector('#submit').classList.add(settings.inactiveButtonClass)
+}
+
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  const cardData = {
+    name: popupCardTitle.value,
+    link: popupCardSrc.value
+  }
+  const card = new Card(cardData, '#card_template');
+  const cardElement = card.createCard();
+
+
+  // Добавляем в DOM
+  document.querySelector('.card').prepend(cardElement);
+  closePopup(popupCard)
+  clearPopupCard()
+}
+
+function openPopupCard() {
+  openPopup(popupCard)
+}
+// Прикрепляем обработчик к форме:
+// он будет следить за событием “submit” - «отправка»
+formCardElement.addEventListener('submit', formSubmitHandler);
+
+addCardButton.addEventListener('click', openPopupCard);

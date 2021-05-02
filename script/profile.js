@@ -71,7 +71,6 @@ function closeByEscape(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened')
     closePopup(openedPopup); 
-    console.log('Я еще')
   }
 }
 
