@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -26,13 +26,13 @@ const initialCards = [
 ];
 
 const popupImg = document.querySelector('.popup_img')
-const formCardElement = document.querySelector('.popup__form_card')
-const addCardButton = document.querySelector('.profile__add-button');
-const popupCard = document.querySelector('.popup_card');
+export const formCardElement = document.querySelector('.popup__form_card')
+export const addCardButton = document.querySelector('.profile__add-button');
+export const popupCard = document.querySelector('.popup_card');
 const popupElementImg = document.querySelector('.popup__img')
 const popupElementFigcaption = document.querySelector('.popup__figcaption')
-const popupCardTitle = document.querySelector('#title');
-const popupCardSrc = document.querySelector('#src');
+export const popupCardTitle = document.querySelector('#title');
+export const popupCardSrc = document.querySelector('#src');
 
 
 class Card {
@@ -92,40 +92,4 @@ class Card {
   }
 }
 
-initialCards.forEach((item) => {
-  const card = new Card(item, '#card_template');
-  const cardElement = card.createCard();
-
-  // Добавляем в DOM
-  document.querySelector('.card').prepend(cardElement);
-});
-
-//Очистка формы
-const clearPopupCard = () => {
-  popupCardTitle.value = ''
-  popupCardSrc.value = ''
-  document.querySelector('#submit').classList.add(settings.inactiveButtonClass)
-}
-
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  const cardData = {
-    name: popupCardTitle.value,
-    link: popupCardSrc.value
-  }
-  const card = new Card(cardData, '#card_template');
-  const cardElement = card.createCard();
-
-
-  // Добавляем в DOM
-  document.querySelector('.card').prepend(cardElement);
-  closePopup(popupCard)
-  clearPopupCard()
-}
-
-
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-formCardElement.addEventListener('submit', formSubmitHandler);
-
-addCardButton.addEventListener('click', () => { openPopup(popupCard) });
+export {Card}
