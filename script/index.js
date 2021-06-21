@@ -11,10 +11,16 @@ const settings = {
 }
 
 const isForm = new FormValidator(settings)
+
 isForm.enableValidation();
+//FormValidator and --------------
 
 //Card start -------------
-import { Card, initialCards, formCardElement, addCardButton, popupCard, popupCardTitle, popupCardSrc } from './Card.js'
+import { Card, initialCards } from './Card.js'
+
+const popupCard = document.querySelector('.popup_card');
+const popupCardTitle = document.querySelector('#title');
+const popupCardSrc = document.querySelector('#src');
 
 initialCards.forEach((item) => {
   const card = new Card(item, '#card_template');
@@ -50,7 +56,11 @@ function formSubmitHandler(evt) {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
+const formCardElement = document.querySelector('.popup__form_card')
+
 formCardElement.addEventListener('submit', formSubmitHandler);
+
+const addCardButton = document.querySelector('.profile__add-button');
 
 addCardButton.addEventListener('click', () => { openPopup(popupCard) });
 
@@ -131,15 +141,3 @@ function closeByEscape(evt) {
     closePopup(openedPopup);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

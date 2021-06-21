@@ -25,17 +25,7 @@ export const initialCards = [
   }
 ];
 
-const popupImg = document.querySelector('.popup_img')
-export const formCardElement = document.querySelector('.popup__form_card')
-export const addCardButton = document.querySelector('.profile__add-button');
-export const popupCard = document.querySelector('.popup_card');
-const popupElementImg = document.querySelector('.popup__img')
-const popupElementFigcaption = document.querySelector('.popup__figcaption')
-export const popupCardTitle = document.querySelector('#title');
-export const popupCardSrc = document.querySelector('#src');
-
-
-class Card {
+export class Card {
   constructor(data, cardSelector) {
     this._name = data.name
     this._link = data.link
@@ -66,8 +56,12 @@ class Card {
 
 
   _openPopupImg() {
+    const popupElementImg = document.querySelector('.popup__img')
+const popupElementFigcaption = document.querySelector('.popup__figcaption')
+
     popupElementImg.src = this._link
     popupElementFigcaption.textContent = this._name
+    const popupImg = document.querySelector('.popup_img')
     popupImg.classList.add('popup_opened')
   }
 
@@ -91,5 +85,3 @@ class Card {
 
   }
 }
-
-export { Card }
