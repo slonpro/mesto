@@ -56,6 +56,7 @@ addCardButton.addEventListener('click', () => { openPopup(popupCard) });
 
 //Card end ------------------
 
+//Popup start -----------------
 
 const editButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_profile');
