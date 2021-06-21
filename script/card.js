@@ -59,10 +59,10 @@ class Card {
     this._element.querySelector('.card__img').src = this._link
     this._element.querySelector('.card__title').textContent = this._name
     this._element.querySelector('.card__title').alt = this._name
-
     return this._element
 
   }
+
 
 
   _openPopupImg() {
@@ -73,20 +73,17 @@ class Card {
 
   _setEventListener() {
 
-    const buttonImg = this._element.querySelector('.card__img')
-
-    buttonImg.addEventListener('click', () => {
-      this._openPopupImg()
-    })
+    this._element.querySelector('.card__img')
+      .addEventListener('click', () => {
+        this._openPopupImg()
+      })
 
     const buttonLike = this._element.querySelector('.card__like')
-
     buttonLike.addEventListener('click', () => {
       buttonLike.classList.toggle('card__like_active')
     })
 
     const buttonCardDelete = this._element.querySelector('.card__delete')
-
     buttonCardDelete.addEventListener('click', function () {
       const listItem = buttonCardDelete.closest('.card__item');
       listItem.remove();
@@ -104,7 +101,7 @@ initialCards.forEach((item) => {
 });
 
 //Очистка формы
-function clearPopupCard() {
+const clearPopupCard = () => {
   popupCardTitle.value = ''
   popupCardSrc.value = ''
   document.querySelector('#submit').classList.add(settings.inactiveButtonClass)
@@ -126,11 +123,9 @@ function formSubmitHandler(evt) {
   clearPopupCard()
 }
 
-function openPopupCard() {
-  openPopup(popupCard)
-}
+
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formCardElement.addEventListener('submit', formSubmitHandler);
 
-addCardButton.addEventListener('click', openPopupCard);
+addCardButton.addEventListener('click', () => { openPopup(popupCard) });
