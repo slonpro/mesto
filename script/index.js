@@ -1,5 +1,5 @@
 //FormValidator 
-import {FormValidator} from './FormValidator.js'
+import { FormValidator } from './FormValidator.js'
 
 const settings = {
   formSelector: '.popup__form',
@@ -14,7 +14,7 @@ const isForm = new FormValidator(settings)
 isForm.enableValidation();
 
 //Card start -------------
-import {Card, initialCards, formCardElement, addCardButton, popupCard, popupCardTitle, popupCardSrc} from './Card.js'
+import { Card, initialCards, formCardElement, addCardButton, popupCard, popupCardTitle, popupCardSrc } from './Card.js'
 
 initialCards.forEach((item) => {
   const card = new Card(item, '#card_template');
@@ -72,8 +72,8 @@ const popupDescription = document.querySelector('#description');
 const formElement = document.querySelector('.popup__form')
 
 //Открываем диалоговое окно 
-function openPopup(modelWindow) { 
-  modelWindow.classList.add('popup_opened') 
+function openPopup(modelWindow) {
+  modelWindow.classList.add('popup_opened')
   document.addEventListener('keydown', closeByEscape);
 }
 
@@ -81,20 +81,20 @@ function openPopup(modelWindow) {
 function closePopup(modelWindow) {
   modelWindow.classList.remove('popup_opened')
   document.removeEventListener('keydown', closeByEscape);
-  
+
 }
 
 const popups = document.querySelectorAll('.popup')
 
 popups.forEach((popup) => {
-    popup.addEventListener('click', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup)
-        }
-        if (evt.target.classList.contains('popup__button-close')) {
-          closePopup(popup)
-        }
-    })
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__button-close')) {
+      closePopup(popup)
+    }
+  })
 })
 
 
@@ -128,7 +128,7 @@ editButton.addEventListener('click', popupOpenedProfile);
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened')
-    closePopup(openedPopup); 
+    closePopup(openedPopup);
   }
 }
 
