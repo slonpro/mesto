@@ -69,7 +69,7 @@ export class Card {
     this._openPopup(popupImg)
   }
 
-  _renoveCard() {
+  _removeCard() {
 this._element.remove();
 this._element = null;
   }
@@ -86,7 +86,7 @@ this._element = null;
 
 
     this._element.querySelector('.card__delete').
-    addEventListener('click', () => this._renoveCard())
+    addEventListener('click', () => this._removeCard())
 
   }
 }

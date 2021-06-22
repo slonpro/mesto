@@ -2,7 +2,7 @@ import { FormValidator } from './FormValidator.js'
 import { Card, initialCards } from './Card.js'
 
 const settings = {
-  formSelector: '.popup__form',
+  //formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_inactive',
@@ -32,9 +32,11 @@ const popupDescription = document.querySelector('#description');
 
 const popups = document.querySelectorAll('.popup')
 
-const isForm = new FormValidator(settings)
+const enableValidatorProfile = new FormValidator(settings, '.popup__form_profile')
+const enableValidatorCard = new FormValidator(settings, '.popup__form_card')
 
-isForm.enableValidation();
+enableValidatorProfile.enableValidation();
+enableValidatorCard.enableValidation();
 
 
 //Открываем диалоговое окно 
