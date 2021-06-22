@@ -70,8 +70,8 @@ export class Card {
   }
 
   _removeCard() {
-this._element.remove();
-this._element = null;
+    this._element.remove();
+    this._element = null;
   }
 
   _setEventListener() {
@@ -82,11 +82,11 @@ this._element = null;
       })
 
     this._element.querySelector('.card__like').
-    addEventListener('click', () => this._toggleLike())
+      addEventListener('click', () => this._toggleLike())
 
 
     this._element.querySelector('.card__delete').
-    addEventListener('click', () => this._removeCard())
+      addEventListener('click', () => this._removeCard())
 
   }
 }

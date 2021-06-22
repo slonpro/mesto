@@ -10,7 +10,7 @@ export class FormValidator {
   }
 
 
-  
+
   _showError(inputElement) {
     const errorElement = this._form.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
@@ -27,7 +27,7 @@ export class FormValidator {
 
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      this._showError(inputElement, );
+      this._showError(inputElement,);
     } else {
       this._hideError(inputElement);
     }
@@ -41,7 +41,7 @@ export class FormValidator {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
         this._buttonInactive();
-        
+
       });
     });
   };
@@ -49,9 +49,9 @@ export class FormValidator {
   enableValidation() {
     this._form = document.querySelector(this._selectorForm);
     this._form.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-      });
-      this._setEventListeners();
+      evt.preventDefault();
+    });
+    this._setEventListeners();
   };
 
   _hasInvalidInput() {
