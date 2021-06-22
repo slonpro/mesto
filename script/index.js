@@ -1,5 +1,5 @@
-//FormValidator 
 import { FormValidator } from './FormValidator.js'
+import { Card, initialCards } from './Card.js'
 
 const settings = {
   formSelector: '.popup__form',
@@ -10,65 +10,17 @@ const settings = {
   errorClass: 'popup__form-error_active'
 }
 
-const isForm = new FormValidator(settings)
-
-isForm.enableValidation();
-//FormValidator and --------------
-
-//Card start -------------
-import { Card, initialCards } from './Card.js'
-
 const popupCard = document.querySelector('.popup_card');
 const popupCardTitle = document.querySelector('#title');
 const popupCardSrc = document.querySelector('#src');
 
-initialCards.forEach((item) => {
-  const card = new Card(item, '#card_template');
-  const cardElement = card.createCard();
-
-  // Добавляем в DOM
-  document.querySelector('.card').prepend(cardElement);
-});
-
-//Очистка формы
-const clearPopupCard = () => {
-  popupCardTitle.value = ''
-  popupCardSrc.value = ''
-  document.querySelector('#submit').classList.add(settings.inactiveButtonClass)
-}
-
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  const cardData = {
-    name: popupCardTitle.value,
-    link: popupCardSrc.value
-  }
-  const card = new Card(cardData, '#card_template');
-  const cardElement = card.createCard();
-
-
-  // Добавляем в DOM
-  document.querySelector('.card').prepend(cardElement);
-  closePopup(popupCard)
-  clearPopupCard()
-}
-
-
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 const formCardElement = document.querySelector('.popup__form_card')
-
-formCardElement.addEventListener('submit', formSubmitHandler);
 
 const addCardButton = document.querySelector('.profile__add-button');
 
-addCardButton.addEventListener('click', () => { openPopup(popupCard) });
-
-//Card end ------------------
-
-//popup start ---------------
-const editButton = document.querySelector('.profile__edit-button');
+const editProfileButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_profile');
+const formProfilePopup = popupProfile.querySelector('.popup__form_profile')
 
 //Получаем переменный текстовых полей
 const profileName = document.querySelector('.profile__name');
@@ -78,8 +30,12 @@ const profileDescription = document.querySelector('.profile__description');
 const popupName = document.querySelector('#name');
 const popupDescription = document.querySelector('#description');
 
-// Находим форму в DOM
-const formElement = document.querySelector('.popup__form')
+const popups = document.querySelectorAll('.popup')
+
+const isForm = new FormValidator(settings)
+
+isForm.enableValidation();
+
 
 //Открываем диалоговое окно 
 function openPopup(modelWindow) {
@@ -94,7 +50,43 @@ function closePopup(modelWindow) {
 
 }
 
-const popups = document.querySelectorAll('.popup')
+//Открываем диалоговое окно и записываем в него значения
+function openedPopupProfile() {
+  openPopup(popupProfile)
+  popupName.value = profileName.textContent;
+  popupDescription.value = profileDescription.textContent;
+}
+
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup);
+  }
+}
+
+function workFormSubmit(evt) {
+  evt.preventDefault();
+  const cardData = {
+    name: popupCardTitle.value,
+    link: popupCardSrc.value
+  }
+  const card = new Card(cardData, '#card_template', openPopup);
+  const cardElement = card.createCard();
+
+  // Добавляем в DOM
+  document.querySelector('.card').prepend(cardElement);
+  closePopup(popupCard)
+  formCardElement.reset()
+  document.querySelector('#submit').classList.add(settings.inactiveButtonClass)
+}
+
+function workProfileSubmit(evt) {
+  evt.preventDefault();
+
+  profileName.textContent = popupName.value
+  profileDescription.textContent = popupDescription.value;
+  closePopup(popupProfile)
+}
 
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
@@ -107,37 +99,19 @@ popups.forEach((popup) => {
   })
 })
 
+formCardElement.addEventListener('submit', workFormSubmit);
 
-//Открываем диалоговое окно и записываем в него значения
-function popupOpenedProfile() {
-  openPopup(popupProfile)
-  popupName.value = profileName.textContent;
-  popupDescription.value = profileDescription.textContent;
-}
+addCardButton.addEventListener('click', () => { openPopup(popupCard) });
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-function formSubmitHandler(evt) {
-  evt.preventDefault();
+formProfilePopup.addEventListener('submit', workProfileSubmit);
 
-  // Эта строчка отменяет стандартную отправку формы.
-  // Так мы можем определить свою логику отправки.
-  // О том, как это делать, расскажем позже.
-  profileName.textContent = popupName.value
-  profileDescription.textContent = popupDescription.value;
-  closePopup(popupProfile)
-}
+editProfileButton.addEventListener('click', openedPopupProfile);
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 
-formElement.addEventListener('submit', formSubmitHandler);
+initialCards.forEach((item) => {
+  const card = new Card(item, '#card_template', openPopup);
+  const cardElement = card.createCard();
 
-editButton.addEventListener('click', popupOpenedProfile);
-
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened')
-    closePopup(openedPopup);
-  }
-}
+  // Добавляем в DOM
+  document.querySelector('.card').prepend(cardElement);
+});

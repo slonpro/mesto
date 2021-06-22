@@ -26,10 +26,11 @@ export const initialCards = [
 ];
 
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, openPopup) {
     this._name = data.name
     this._link = data.link
     this._cardSelector = cardSelector
+    this._openPopup = openPopup
   }
 
   _getTemplate() {
@@ -53,16 +54,24 @@ export class Card {
 
   }
 
+  _toggleLike() {
+    this._element.querySelector('.card__like').classList.toggle('card__like_active')
+  }
 
 
   _openPopupImg() {
     const popupElementImg = document.querySelector('.popup__img')
-const popupElementFigcaption = document.querySelector('.popup__figcaption')
+    const popupElementFigcaption = document.querySelector('.popup__figcaption')
 
     popupElementImg.src = this._link
     popupElementFigcaption.textContent = this._name
     const popupImg = document.querySelector('.popup_img')
-    popupImg.classList.add('popup_opened')
+    this._openPopup(popupImg)
+  }
+
+  _renoveCard() {
+this._element.remove();
+this._element = null;
   }
 
   _setEventListener() {
@@ -72,16 +81,12 @@ const popupElementFigcaption = document.querySelector('.popup__figcaption')
         this._openPopupImg()
       })
 
-    const buttonLike = this._element.querySelector('.card__like')
-    buttonLike.addEventListener('click', () => {
-      buttonLike.classList.toggle('card__like_active')
-    })
+    this._element.querySelector('.card__like').
+    addEventListener('click', () => this._toggleLike())
 
-    const buttonCardDelete = this._element.querySelector('.card__delete')
-    buttonCardDelete.addEventListener('click', function () {
-      const listItem = buttonCardDelete.closest('.card__item');
-      listItem.remove();
-    })
+
+    this._element.querySelector('.card__delete').
+    addEventListener('click', () => this._renoveCard())
 
   }
 }
