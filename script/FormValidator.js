@@ -36,11 +36,11 @@ export class FormValidator {
   _setEventListeners() {
     this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
 
-    this._buttonInactive();
+    this._disableButton();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._buttonInactive();
+        this._disableButton();
 
       });
     });
@@ -60,12 +60,12 @@ export class FormValidator {
     });
   }
 
-  _buttonInactive() {
-    const buttonElement = this._form.querySelector(this._submitButtonSelector);
+  _disableButton() {
+    this.buttonElement = this._form.querySelector(this._submitButtonSelector);
     if (this._hasInvalidInput()) {
-      buttonElement.classList.add(this._inactiveButtonClass);
+      this.buttonElement.classList.add(this._inactiveButtonClass);
     } else {
-      buttonElement.classList.remove(this._inactiveButtonClass);
+      this.buttonElement.classList.remove(this._inactiveButtonClass);
     }
   }
 }

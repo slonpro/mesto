@@ -14,6 +14,7 @@ const settings = {
 const popupCard = document.querySelector('.popup_card');
 const popupCardTitle = document.querySelector('#title');
 const popupCardSrc = document.querySelector('#src');
+const sectionCard = document.querySelector('.card');
 
 const formCardElement = document.querySelector('.popup__form_card')
 
@@ -53,7 +54,6 @@ function closePopup(modelWindow) {
 
 }
 
-//Открываем диалоговое окно и записываем в него значения
 function openedPopupProfile() {
   openPopup(popupProfile)
   popupName.value = profileName.textContent;
@@ -67,7 +67,7 @@ function closeByEscape(evt) {
   }
 }
 
-function workFormSubmit(evt) {
+function submitFormCard(evt) {
   evt.preventDefault();
   const cardData = {
     name: popupCardTitle.value,
@@ -76,14 +76,13 @@ function workFormSubmit(evt) {
   const card = new Card(cardData, '#card_template', openPopup);
   const cardElement = card.createCard();
 
-  // Добавляем в DOM
-  document.querySelector('.card').prepend(cardElement);
+  sectionCard.prepend(cardElement);
   closePopup(popupCard)
   formCardElement.reset()
   document.querySelector('#submit').classList.add(settings.inactiveButtonClass)
 }
 
-function workProfileSubmit(evt) {
+function submitFormProfile(evt) {
   evt.preventDefault();
 
   profileName.textContent = popupName.value
@@ -102,11 +101,11 @@ popups.forEach((popup) => {
   })
 })
 
-formCardElement.addEventListener('submit', workFormSubmit);
+formCardElement.addEventListener('submit', submitFormCard);
 
 addCardButton.addEventListener('click', () => { openPopup(popupCard) });
 
-formProfilePopup.addEventListener('submit', workProfileSubmit);
+formProfilePopup.addEventListener('submit', submitFormProfile);
 
 editProfileButton.addEventListener('click', openedPopupProfile);
 
@@ -116,5 +115,5 @@ initialCards.forEach((item) => {
   const cardElement = card.createCard();
 
   // Добавляем в DOM
-  document.querySelector('.card').prepend(cardElement);
+  sectionCard.prepend(cardElement);
 });
