@@ -56,8 +56,7 @@ export class FormValidator {
 
   resetValidation() {
     this._form.reset()
-    this._elementSubmitButton = this._form.querySelector(this._submitButtonSelector)
-    this._elementSubmitButton.classList.add(this._inactiveButtonClass)
+    this.buttonElement.classList.add(this._inactiveButtonClass)
   }
 
   _hasInvalidInput() {
