@@ -54,6 +54,12 @@ export class FormValidator {
     this._setEventListeners();
   };
 
+  resetValidation() {
+    this._form.reset()
+    this._elementSubmitButton = this._form.querySelector(this._submitButtonSelector)
+    this._elementSubmitButton.classList.add(this._inactiveButtonClass)
+  }
+
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;

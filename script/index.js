@@ -60,6 +60,11 @@ function openedPopupProfile() {
   popupDescription.value = profileDescription.textContent;
 }
 
+function openedPopopCard() {
+  openPopup(popupCard)
+  enableValidatorCard.resetValidation()
+}
+
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened')
@@ -78,8 +83,6 @@ function submitFormCard(evt) {
 
   sectionCard.prepend(cardElement);
   closePopup(popupCard)
-  formCardElement.reset()
-  document.querySelector('#submit').classList.add(settings.inactiveButtonClass)
 }
 
 function submitFormProfile(evt) {
@@ -103,7 +106,7 @@ popups.forEach((popup) => {
 
 formCardElement.addEventListener('submit', submitFormCard);
 
-addCardButton.addEventListener('click', () => { openPopup(popupCard) });
+addCardButton.addEventListener('click', openedPopopCard);
 
 formProfilePopup.addEventListener('submit', submitFormProfile);
 
