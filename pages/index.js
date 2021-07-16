@@ -1,6 +1,8 @@
-import { FormValidator } from './FormValidator.js'
-import { Card } from './Card.js'
-import { initialCards } from './initialCards.js'
+import { FormValidator } from '../components/FormValidator.js'
+import { Card } from '../components/Card.js'
+import { initialCards } from '../utils/initialCards.js'
+import Section from '../components/Section.js'
+import Popup from '../components/Popup.js'
 
 const settings = {
   //formSelector: '.popup__form',
@@ -11,7 +13,6 @@ const settings = {
   errorClass: 'popup__form-error_active'
 }
 
-const popupCard = document.querySelector('.popup_card');
 const popupCardTitle = document.querySelector('#title');
 const popupCardSrc = document.querySelector('#src');
 const sectionCard = document.querySelector('.card');
@@ -32,7 +33,6 @@ const profileDescription = document.querySelector('.profile__description');
 const popupName = document.querySelector('#name');
 const popupDescription = document.querySelector('#description');
 
-const popups = document.querySelectorAll('.popup')
 
 const enableValidatorProfile = new FormValidator(settings, '.popup__form_profile')
 const enableValidatorCard = new FormValidator(settings, '.popup__form_card')
@@ -41,48 +41,37 @@ enableValidatorProfile.enableValidation();
 enableValidatorCard.enableValidation();
 
 
-//Открываем диалоговое окно 
-function openPopup(modelWindow) {
-  modelWindow.classList.add('popup_opened')
-  document.addEventListener('keydown', closeByEscape);
-}
+const openedPopupProfile1 = new Popup('.popup_profile')
 
-//Функция закрытия popup
-function closePopup(modelWindow) {
-  modelWindow.classList.remove('popup_opened')
-  document.removeEventListener('keydown', closeByEscape);
-
-}
+openedPopupProfile1.setEventListeners()
 
 function openedPopupProfile() {
-  openPopup(popupProfile)
+
+  openedPopupProfile1.openPopup()
   popupName.value = profileName.textContent;
   popupDescription.value = profileDescription.textContent;
 }
 
+const popupCard = new Popup('.popup_card')
+
 function openedPopopCard() {
-  openPopup(popupCard)
+  popupCard.openPopup()
+  popupCard.setEventListeners()
   enableValidatorCard.resetValidation()
 }
 
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened')
-    closePopup(openedPopup);
-  }
-}
+
 
 function submitFormCard(evt) {
   evt.preventDefault();
-  const cardData = {
+  const card = new Card({
     name: popupCardTitle.value,
     link: popupCardSrc.value
-  }
-  const card = new Card(cardData, '#card_template', openPopup);
+  }, '#card_template');
   const cardElement = card.createCard();
 
   sectionCard.prepend(cardElement);
-  closePopup(popupCard)
+  popupCard.closePopup()
 }
 
 function submitFormProfile(evt) {
@@ -93,16 +82,6 @@ function submitFormProfile(evt) {
   closePopup(popupProfile)
 }
 
-popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup)
-    }
-    if (evt.target.classList.contains('popup__button-close')) {
-      closePopup(popup)
-    }
-  })
-})
 
 formCardElement.addEventListener('submit', submitFormCard);
 
@@ -113,10 +92,13 @@ formProfilePopup.addEventListener('submit', submitFormProfile);
 editProfileButton.addEventListener('click', openedPopupProfile);
 
 
-initialCards.forEach((item) => {
-  const card = new Card(item, '#card_template', openPopup);
-  const cardElement = card.createCard();
+const initialCard = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, '#card_template');
+    const cardElement = card.createCard();
+    initialCard.addItem(cardElement);
+}}, '.card')
 
-  // Добавляем в DOM
-  sectionCard.prepend(cardElement);
-});
+initialCard.renderItems()
+
