@@ -1,9 +1,9 @@
 export class Card {
-  constructor(data, cardSelector, openPopup) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name
     this._link = data.link
     this._cardSelector = cardSelector
-    this._openPopup = openPopup
+    this._handleCardClick = handleCardClick
   }
 
   _getTemplate() {
@@ -32,15 +32,14 @@ export class Card {
   }
 
 
-  _openPopupImg() {
-    const popupElementImg = document.querySelector('.popup__img')
-    const popupElementFigcaption = document.querySelector('.popup__figcaption')
-
-    popupElementImg.src = this._link
-    popupElementFigcaption.textContent = this._name
-    const popupImg = document.querySelector('.popup_img')
-    this._openPopup(popupImg)
-  }
+  /*   _openPopupImg() {
+      const popupElementImg = document.querySelector('.popup__img')
+      const popupElementFigcaption = document.querySelector('.popup__figcaption')
+  
+      popupElementImg.src = this._link
+      popupElementFigcaption.textContent = this._name
+   
+    } */
 
   _removeCard() {
     this._element.remove();
@@ -51,7 +50,7 @@ export class Card {
 
     this._element.querySelector('.card__img')
       .addEventListener('click', () => {
-        this._openPopupImg()
+        this._handleCardClick('.popup_img', this._link, this._name)
       })
 
     this._element.querySelector('.card__like').

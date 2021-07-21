@@ -3,35 +3,20 @@ import { Card } from '../components/Card.js'
 import { initialCards } from '../utils/initialCards.js'
 import Section from '../components/Section.js'
 import Popup from '../components/Popup.js'
-
-const settings = {
-  //formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_inactive',
-  inputErrorClass: 'popup__input_active',
-  errorClass: 'popup__form-error_active'
-}
-
-const popupCardTitle = document.querySelector('#title');
-const popupCardSrc = document.querySelector('#src');
-const sectionCard = document.querySelector('.card');
-
-const formCardElement = document.querySelector('.popup__form_card')
-
-const addCardButton = document.querySelector('.profile__add-button');
-
-const editProfileButton = document.querySelector('.profile__edit-button');
-const popupProfile = document.querySelector('.popup_profile');
-const formProfilePopup = popupProfile.querySelector('.popup__form_profile')
-
-//Получаем переменный текстовых полей
-const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('.profile__description');
-
-//Получаем перменные текстовых полей в диалоговом окне
-const popupName = document.querySelector('#name');
-const popupDescription = document.querySelector('#description');
+import UserInfo from '../components/UserInfo.js'
+import PopupWithForm from '../components/PopupWithForm.js'
+import PopupWithImage from '../components/PopupWithImage.js'
+import {
+  settings,
+  sectionCard,
+  addCardButton,
+  editProfileButton,
+  formProfilePopup,
+  profileName,
+  profileDescription,
+  popupName,
+  popupDescription
+} from '../utils/constants.js'
 
 
 const enableValidatorProfile = new FormValidator(settings, '.popup__form_profile')
@@ -41,64 +26,63 @@ enableValidatorProfile.enableValidation();
 enableValidatorCard.enableValidation();
 
 
-const openedPopupProfile1 = new Popup('.popup_profile')
+const userProfile = new UserInfo({ userName: profileName.textContent, desciptionUser: profileDescription.textContent })
 
-openedPopupProfile1.setEventListeners()
+const popupProfile = new Popup('.popup_profile')
 
-function openedPopupProfile() {
 
-  openedPopupProfile1.openPopup()
-  popupName.value = profileName.textContent;
-  popupDescription.value = profileDescription.textContent;
+const popupCard = new PopupWithForm({
+  popupSelector: '.popup_card',
+  handleFormSumbit: ({ title, src }) => {
+    const card = new Card({
+      name: title,
+      link: src
+    }, '#card_template', (handleCardClick));
+    const cardElement = card.createCard();
+    sectionCard.prepend(cardElement);
+    popupCard.closePopup()
+  }
+})
+
+popupCard.setEventListeners()
+
+function handleCardClick(selector, link, name) {
+  const popupImg = new PopupWithImage(selector, link, name)
+  popupImg.openPopup();
+  popupImg.setEventListeners()
 }
 
-const popupCard = new Popup('.popup_card')
 
-function openedPopopCard() {
+addCardButton.addEventListener('click', () => {
   popupCard.openPopup()
-  popupCard.setEventListeners()
   enableValidatorCard.resetValidation()
-}
+});
 
-
-
-function submitFormCard(evt) {
+formProfilePopup.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  const card = new Card({
-    name: popupCardTitle.value,
-    link: popupCardSrc.value
-  }, '#card_template');
-  const cardElement = card.createCard();
+  userProfile.setUserInfo()
+  popupProfile.closePopup()
+});
 
-  sectionCard.prepend(cardElement);
-  popupCard.closePopup()
-}
+editProfileButton.addEventListener('click', () => {
+  popupProfile.openPopup()
+  popupProfile.setEventListeners()
 
-function submitFormProfile(evt) {
-  evt.preventDefault();
+  const userInfo = userProfile.getUserInfo()
 
-  profileName.textContent = popupName.value
-  profileDescription.textContent = popupDescription.value;
-  closePopup(popupProfile)
-}
+  popupName.value = userInfo.username;
+  popupDescription.value = userInfo.description;
+});
 
-
-formCardElement.addEventListener('submit', submitFormCard);
-
-addCardButton.addEventListener('click', openedPopopCard);
-
-formProfilePopup.addEventListener('submit', submitFormProfile);
-
-editProfileButton.addEventListener('click', openedPopupProfile);
 
 
 const initialCard = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '#card_template');
+    const card = new Card(item, '#card_template', handleCardClick);
     const cardElement = card.createCard();
     initialCard.addItem(cardElement);
-}}, '.card')
+  }
+}, '.card')
 
 initialCard.renderItems()
-
