@@ -31,8 +31,6 @@ const userProfile = new UserInfo({
   selectorDescriptionUser: '.profile__description'
 })
 
-const userInfo = userProfile.getUserInfo()
-
 const popupCard = new PopupWithForm({
   popupSelector: '.popup_card',
   handleFormSumbit: ({ title, src }) => {
@@ -51,8 +49,7 @@ popupCard.setEventListeners()
 const popupProfile = new PopupWithForm({
   popupSelector: '.popup_profile',
   handleFormSumbit: ({ name, description }) => {
-    userInfo.username = name
-    userInfo.description = description
+
     userProfile.setUserInfo({ name, description })
     popupProfile.closePopup()
   }
@@ -72,6 +69,7 @@ addCardButton.addEventListener('click', () => {
 
 
 editProfileButton.addEventListener('click', () => {
+  const userInfo = userProfile.getUserInfo()
   popupName.value = userInfo.username;
   popupDescription.value = userInfo.description;
   popupProfile.openPopup()
