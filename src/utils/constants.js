@@ -12,7 +12,6 @@ export const sectionCard = document.querySelector('.card');
 export const addCardButton = document.querySelector('.profile__add-button');
 
 export const editProfileButton = document.querySelector('.profile__edit-button');
-export const formProfilePopup = document.querySelector('.popup__form_profile')
 
 //Получаем переменный текстовых полей
 export const profileName = document.querySelector('.profile__name');

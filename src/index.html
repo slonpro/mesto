@@ -5,18 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
 </head>
 
 <body class="root">
   <div class="root__page">
     <header class="header">
-      <img src="./img/logo.svg" alt="Логотип сайта" class="header__logo">
+      <img src="<%=require('./img/logo.svg')%>" alt="Логотип сайта" class="header__logo">
     </header>
     <main class="main">
       <section class="profile">
-        <img src="./img/avatar.png" alt="Фото профиля" class="profile__avatar">
+        <img src="<%=require('./img/avatar.png')%>" alt="Фото профиля" class="profile__avatar">
         <div class="profile__profile-info">
           <div class="profile__name-block">
             <h1 class="profile__name">Жак-Ив Кусто</h1><button aria-label="Редактировать" type="button"
@@ -41,7 +40,7 @@
       <form name="popup_form" action="#" class="popup__form popup__form_profile" novalidate>
         <fieldset class="popup__fieldset">
           <label for="" class="popup__label">
-            <input type="text" name="name" id="name" class="popup__input " placeholder="Имя" minlength="2"
+            <input type="text" name="name" id="name" class="popup__input" placeholder="Имя" minlength="2"
               maxlength="40" required>
             <span class="popup__form-error name-error"></span>
           </label>
@@ -99,9 +98,6 @@
       </div>
     </article>
   </template>
-  <!--  <script type="nomodule" src="./script/FormValidate.js"></script> -->
-  <script type="module" src="./pages/index.js"></script>
-  <!--  <script type="nomodule" src="./script/Card.js"></script> -->
 
 
 
