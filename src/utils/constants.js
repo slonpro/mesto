@@ -5,15 +5,9 @@ export const settings = {
   inputErrorClass: 'popup__input_active',
   errorClass: 'popup__form-error_active'
 }
-
-export const sectionCard = document.querySelector('.card');
-
-
 export const addCardButton = document.querySelector('.profile__add-button');
-
 export const editProfileButton = document.querySelector('.profile__edit-button');
 
-//Получаем переменный текстовых полей
 export const profileName = document.querySelector('.profile__name');
 export const profileDescription = document.querySelector('.profile__description');
 

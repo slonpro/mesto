@@ -9,7 +9,6 @@ import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import {
   settings,
-  sectionCard,
   addCardButton,
   editProfileButton,
   profileName,
