@@ -55,10 +55,11 @@ const popupProfile = new PopupWithForm({
 })
 popupProfile.setEventListeners()
 
-function handleCardClick(selector, link, name) {
-  const popupImg = new PopupWithImage(selector)
+const popupImg = new PopupWithImage('.popup_img')
+popupImg.setEventListeners()
+
+function handleCardClick(link, name) {
   popupImg.openPopup(link, name);
-  popupImg.setEventListeners()
 }
 
 addCardButton.addEventListener('click', () => {

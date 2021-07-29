@@ -41,7 +41,7 @@ export class Card {
 
     this._element.querySelector('.card__img')
       .addEventListener('click', () => {
-        this._handleCardClick('.popup_img', this._link, this._name)
+        this._handleCardClick(this._link, this._name)
       })
 
     this._element.querySelector('.card__like').
