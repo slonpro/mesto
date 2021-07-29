@@ -11,8 +11,6 @@ import {
   settings,
   addCardButton,
   editProfileButton,
-  profileName,
-  profileDescription,
   popupName,
   popupDescription,
 } from '../utils/constants.js'
@@ -24,20 +22,22 @@ enableValidatorProfile.enableValidation();
 enableValidatorCard.enableValidation();
 
 const userProfile = new UserInfo({
-  userName: profileName.textContent,
-  desciptionUser: profileDescription.textContent,
   selectorUserName: '.profile__name',
   selectorDescriptionUser: '.profile__description'
 })
+
+const createCard = (item) => {
+  const card = new Card(item, '#card_template', handleCardClick);
+  return card
+}
+
+
 
 const popupCard = new PopupWithForm({
   popupSelector: '.popup_card',
   handleFormSumbit: ({ title, src }) => {
 
-    const card = new Card({
-      name: title,
-      link: src
-    }, '#card_template', handleCardClick);
+    const card = createCard({name: title, link: src})
     const cardElement = card.createCard();
     initialCard.addItem(cardElement, true);
     popupCard.closePopup()
@@ -56,8 +56,8 @@ const popupProfile = new PopupWithForm({
 popupProfile.setEventListeners()
 
 function handleCardClick(selector, link, name) {
-  const popupImg = new PopupWithImage(selector, link, name)
-  popupImg.openPopup();
+  const popupImg = new PopupWithImage(selector)
+  popupImg.openPopup(link, name);
   popupImg.setEventListeners()
 }
 
@@ -77,7 +77,7 @@ editProfileButton.addEventListener('click', () => {
 const initialCard = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '#card_template', handleCardClick);
+    const card = createCard(item)
     const cardElement = card.createCard();
     initialCard.addItem(cardElement, false);
   },

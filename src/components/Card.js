@@ -4,6 +4,7 @@ export class Card {
     this._link = data.link
     this._cardSelector = cardSelector
     this._handleCardClick = handleCardClick
+    
   }
 
   _getTemplate() {
@@ -22,7 +23,7 @@ export class Card {
 
     this._element.querySelector('.card__img').src = this._link
     this._element.querySelector('.card__title').textContent = this._name
-    this._element.querySelector('.card__title').alt = this._name
+    this._element.querySelector('.card__img').alt = this._name
     return this._element
 
   }
@@ -30,16 +31,6 @@ export class Card {
   _toggleLike() {
     this._element.querySelector('.card__like').classList.toggle('card__like_active')
   }
-
-
-  /*   _openPopupImg() {
-      const popupElementImg = document.querySelector('.popup__img')
-      const popupElementFigcaption = document.querySelector('.popup__figcaption')
-  
-      popupElementImg.src = this._link
-      popupElementFigcaption.textContent = this._name
-   
-    } */
 
   _removeCard() {
     this._element.remove();
