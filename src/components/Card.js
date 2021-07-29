@@ -4,7 +4,8 @@ export class Card {
     this._link = data.link
     this._cardSelector = cardSelector
     this._handleCardClick = handleCardClick
-    
+    this._cardImage = document.querySelector('.card__img')
+    console.log(this._cardImage)
   }
 
   _getTemplate() {
